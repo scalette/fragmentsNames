@@ -87,7 +87,7 @@ let AppService = class AppService {
             }).toPromise();
         }
         if (dataNames.length > 0) {
-            this.dataRepository.save({ stringc: dataNames.join('|') });
+            await this.dataRepository.save({ stringc: dataNames.join('|') });
         }
         return { message: 'success' };
     }
