@@ -15,24 +15,17 @@ const postgres_module_1 = require("./postgres/postgres.module");
 const data_providers_1 = require("./postgres/dataEntity/data.providers");
 const config_1 = require("@nestjs/config");
 const nestjs_telegram_1 = require("nestjs-telegram");
-const EnvironmentVariables_1 = require("../configs/env/EnvironmentVariables");
-const EnvironmentVariables_validation_1 = require("../configs/env/EnvironmentVariables.validation");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            config_1.ConfigModule.forRoot({
-                load: [EnvironmentVariables_1.default],
-                cache: true,
-                validate: EnvironmentVariables_validation_1.validate,
-            }),
             axios_1.HttpModule,
             nestjs_telegram_1.TelegramModule.forRootAsync({
                 imports: [config_1.ConfigModule],
-                useFactory: async (configService) => ({
-                    botKey: configService.get('Telegram_API_Key')
+                useFactory: async () => ({
+                    botKey: 'Telegram_API_Key'
                 }),
                 inject: [config_1.ConfigService]
             }),
